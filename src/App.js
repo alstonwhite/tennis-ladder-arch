@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+
+import LadderRankings from './components/LadderRankings'
+import MatchesDisplay from './components/MatchesDisplay'
+import AddMatch from './components/AddMatch'
+
+import { ladder } from './testData'
+
 
 function App() {
+
+  // const [ladder, setLadder] = useState(null)
+
+  console.log("ladder isArray", Array.isArray(ladder))
+  console.log("ladder array", ladder)
+
+  console.log("players isArray", Array.isArray(ladder.players))
+  console.log("players array", ladder.players)
+
+  console.log("matches isArray", Array.isArray(ladder.matches))
+  console.log("matches array", ladder.matches)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Toucan Tour Tennis Ladder</h1>
+      <AddMatch/>
+      <LadderRankings players={ladder.players}/>
+      <MatchesDisplay matches={ladder.matches}/>
+    </>
   );
 }
 
