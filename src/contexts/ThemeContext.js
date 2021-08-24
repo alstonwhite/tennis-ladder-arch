@@ -21,7 +21,6 @@ export const ThemeProvider = ({ children }) => {
 
     const updateTheme = () => {
         setTheme(theme === themes.light ? themes.dark : themes.light);
-        console.log(theme === themes.light ? themes.dark : themes.light);
     }
 
     const value = {theme, updateTheme};
