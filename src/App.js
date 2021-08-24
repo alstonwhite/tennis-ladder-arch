@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { ThemeProvider } from './contexts/ThemeContext'
+import Header from './components/Header'
 import LadderRankings from './components/LadderRankings'
 import MatchesDisplay from './components/MatchesDisplay'
 import AddMatch from './components/AddMatch'
@@ -11,10 +13,12 @@ function App() {
   
   return (
     <>
-      <h1>Toucan Tour Tennis Ladder</h1>
-      <AddMatch/>
-      <LadderRankings players={ladder.players}/>
-      <MatchesDisplay matches={ladder.matches}/>
+      <ThemeProvider>
+        <Header/>
+        <AddMatch/>
+        <LadderRankings players={ladder.players}/>
+        <MatchesDisplay matches={ladder.matches}/>
+      </ThemeProvider>
     </>
   );
 }
