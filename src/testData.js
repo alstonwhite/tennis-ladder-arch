@@ -43,6 +43,10 @@ export const ladder = {
   ]
 }
 
+export const fetchPlayers = async () => {
+  return ladder.players;
+}
+
 export const fetchMatches = async () => {
   return ladder.matches;
 }

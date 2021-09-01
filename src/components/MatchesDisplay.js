@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { fetchMatches } from '../testData'
 
 
-const MatchesDisplay = ({ matches }) => {
+const MatchesDisplay = ({ matches, players }) => {
     
     return (
       <div className="matches-grid">
@@ -17,16 +17,22 @@ const MatchesDisplay = ({ matches }) => {
         {matches ? matches.sort((p1, p2) => p1.ranking > p2.ranking ? 1 : -1).map(match => 
           <div className="matches-grid__game">  
             <div className="matches-grid__player">
-              <div>{match.winner ? match.winner : "No winner entered"}</div>
-              <div>{match.date ? match.date : "No date entered"}</div>
-              <div>{match.winner.rank ? match.winner.rank : "No ranking entered"}</div>
-              <div>{match.winner.score ? match.winner.score : "No score entered"}</div>
+              <div>{match.winner}</div>
+              <div>{match.date}</div>
+              <div>{players.find(player => player.name === match.winner).ranking}</div>
+              <div lassName="score-container">{match.winnerScore.map(score => 
+                <div className="score-item">{score}</div>
+              )}
+              </div>
             </div>
             <div className="matches-grid__player">
               <div>{match.loser ? match.loser : "No winner entered"}</div>
               <div></div>
-              <div>{match.loser.rank ? match.loser.rank : "No ranking entered"}</div>
-              <div>{match.loser.score ? match.loser.score : "No score entered"}</div>
+              <div>{players.find(player => player.name === match.loser).ranking}</div>
+              <div className="score-container">{match.loserScore.map(score => 
+                <div className="score-item">{score}</div>
+              )}
+              </div>
             </div>
           </div>
         ) : <div className="matches-grid__game">No matches added</div>} 

@@ -6,11 +6,12 @@ import Header from './components/Header'
 import MatchesDisplay from './components/MatchesDisplay'
 import AddMatchForm from './components/AddMatchForm'
 
-import { fetchMatches, postNewMatch } from './testData'
+import { fetchPlayers, fetchMatches, postNewMatch } from './testData'
 
 
 function App() {
 
+  const [players, setPlayers] = useState(null);
   const [matches, setMatches] = useState(null);
 
   const addNewMatch = ({date, winner, loser, winnerScore, loserScore}) => {
@@ -19,6 +20,7 @@ function App() {
   }
 
   useEffect(() => {
+    fetchPlayers().then(response => setPlayers(response))
     fetchMatches().then(response => setMatches(response))
   },[])
   
@@ -27,7 +29,7 @@ function App() {
       <ThemeProvider>
         <Header/>
         <AddMatchForm addMatch={addNewMatch}/>
-        <MatchesDisplay matches={matches}/>
+        <MatchesDisplay matches={matches} players={players}/>
       </ThemeProvider>
     </div>
   );
