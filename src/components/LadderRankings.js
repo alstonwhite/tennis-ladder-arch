@@ -3,10 +3,6 @@ import React from 'react'
 
 const LadderRankings = ({players}) => {
     
-    console.log("players isArray", Array.isArray(players))
-    console.log("players array", players)
-
-    
     return (
         <>
         <table>

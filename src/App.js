@@ -1,25 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import './index.css'
 
 import { ThemeProvider } from './contexts/ThemeContext'
 import Header from './components/Header'
-import LadderRankings from './components/LadderRankings'
 import MatchesDisplay from './components/MatchesDisplay'
-import AddMatch from './components/AddMatch'
+import AddMatchForm from './components/AddMatchForm'
 
-import { ladder } from './testData'
+import { fetchMatches, postNewMatch } from './testData'
 
 
 function App() {
+
+  const [matches, setMatches] = useState(null);
+
+  const addNewMatch = ({date, winner, loser, winnerScore, loserScore}) => {
+    postNewMatch({date, winner, loser, winnerScore, loserScore});
+    setMatches([{date, winner, loser, winnerScore, loserScore}, ...matches])
+  }
+
+  useEffect(() => {
+    fetchMatches().then(response => setMatches(response))
+  },[])
   
   return (
-    <>
+    <div className="App">
       <ThemeProvider>
         <Header/>
-        <AddMatch/>
-        <LadderRankings players={ladder.players}/>
-        <MatchesDisplay matches={ladder.matches}/>
+        <AddMatchForm addMatch={addNewMatch}/>
+        <MatchesDisplay matches={matches}/>
       </ThemeProvider>
-    </>
+    </div>
   );
 }
 

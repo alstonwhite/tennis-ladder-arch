@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { fetchMatches } from '../testData'
 
 
-const LadderRankings = ({matches}) => {
-    
-    console.log("matches isArray", Array.isArray(matches))
-    console.log("matches array", matches)
-
+const MatchesDisplay = ({ matches }) => {
     
     return (
       <div className="matches-grid">
@@ -36,4 +34,4 @@ const LadderRankings = ({matches}) => {
     )
 }
 
-export default LadderRankings;
+export default MatchesDisplay;
