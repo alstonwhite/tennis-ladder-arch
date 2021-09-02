@@ -8,25 +8,46 @@
     sans-serif;
 }
 
-.matches-grid__game {
-    background-color: #006E37;
-    border: 5px white;
-    color: #f8f8ff;
-    box-shadow: 10px 5px 5px black;
-}
-
-.matches-grid__game {
-    border: 5px white;
+.matches-grid-wrapper {
+    margin: 0px;
+    padding: 3px;
+    
     display: flex;
     flex-direction: column;
 }
 
-.matches-grid__player {
-    border: 3px white;
+.matches-grid__heading {
+    margin: 0px;
+    padding: 3px;
+    
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr 6fr;
+    grid-template-areas: "player-head rank-head date-head score-head";
+}
+
+.matches-grid__game {
+    background-color: #006E37;
+    color: #f8f8ff;
+    box-shadow: 10px 5px 5px black;
+
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    
+    margin-bottom: 10px;
+}
+
+.matches-grid__player {
+    margin: 0px;
+    padding: 2px 5px;
+    border: 1px solid white;
+    
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr 6fr;
+    grid-template-areas: "player rank date score";
 }
 
 .score-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "set set set set set";
 }
