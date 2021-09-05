@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './index.css'
 
 import { ThemeProvider } from './contexts/ThemeContext'
 import Header from './components/Header'
-import MatchesDisplay from './components/MatchesDisplay'
-import AddMatchForm from './components/AddMatchForm'
+import HomePage from './components/HomePage'
+import PlayerPage from './components/PlayerPage'
 
 import { fetchPlayers, fetchMatches, postNewMatch } from './testData'
 
@@ -26,11 +31,18 @@ function App() {
   
   return (
     <div className="App">
-      <ThemeProvider>
-        <Header/>
-        <AddMatchForm addMatch={addNewMatch}/>
-        <MatchesDisplay matches={matches} players={players}/>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider>
+          <Header/>
+          <HomePage matches={matches} players={players} addNewMatch={addNewMatch}/>
+          <Switch>
+            <Route path="/player/:id" children={
+              <PlayerPage players={players}/>
+              }>
+            </Route>
+          </Switch>
+        </ThemeProvider>
+      </Router>
     </div>
   );
 }

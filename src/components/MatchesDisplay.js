@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react'
-
-import { fetchMatches } from '../testData'
+import React from 'react'
 
 
 const MatchesDisplay = ({ matches, players }) => {
@@ -15,7 +13,7 @@ const MatchesDisplay = ({ matches, players }) => {
           <h4 className="score-head">Score</h4>
         </div>
         <div className="matches-grid">
-          {matches ? matches.sort((p1, p2) => p1.ranking > p2.ranking ? 1 : -1).map(match => 
+          {matches ? matches.map(match => 
             <div className="matches-grid__game">  
               <div className="matches-grid__player">
                 <div className="player">{match.winner}</div>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 
-const AddMatchForm = ({ addMatch }) => {
+const AddMatchForm = ({ addMatch, players }) => {
 
     const [data, setData] = useState(
         {
@@ -26,14 +26,12 @@ const AddMatchForm = ({ addMatch }) => {
     }
 
     const handleWinnerScoreChange = (i) => (e) => {
-        console.log("i: ", i, "e.target.value: ", e.target.value);
         const newWinnerScoreChangeData = {...data};
         newWinnerScoreChangeData.winnerScore[i] = e.target.value;
         setData(newWinnerScoreChangeData);
     }
 
     const handleLoserScoreChange = (i) => (e) => {
-        console.log("i: ", i, "e.target.value: ", e.target.value);
         const newLoserScoreChangeData = {...data};
         newLoserScoreChangeData.loserScore[i] = e.target.value;
         setData(newLoserScoreChangeData);
@@ -53,14 +51,11 @@ const AddMatchForm = ({ addMatch }) => {
         console.log("Match submitted", data)
     }
 
-    // useEffect(() => {
-    //     console.log("useEffect data", data)
-    // })
-
 
     return (
         <>
-            <h4>Add new match</h4>
+            <h3>Add new match</h3>
+            <button onClick={console.log(data)}>Log data</button>
             <form onSubmit={handleSubmit}>
                 <label>Date:
                     <input
@@ -71,11 +66,12 @@ const AddMatchForm = ({ addMatch }) => {
                 </label>
                 <br/>
                 <label>Winner:
-                    <input
-                        type="text"
-                        value={data.winner}
-                        onChange={handleWinnerChange}
-                    />
+                    <select value={data.winner} onChange={handleWinnerChange}>
+                        <option value="" disabled selected>Select winner</option>
+                        {players && players.map(player => 
+                            <option value={player.name} key={player.id}>{player.name}</option>
+                        )}
+                    </select>
                 </label>
                 <br/>
                 <label>Winner Score:
@@ -97,11 +93,12 @@ const AddMatchForm = ({ addMatch }) => {
                 </label>
                 <br/>
                 <label>Loser:
-                    <input
-                        type="text"
-                        value={data.loser}
-                        onChange={handleLoserChange}
-                    />
+                <select value={data.loser} onChange={handleLoserChange}>
+                    <option value="" disabled selected>Select loser</option>
+                        {players && players.map(player => 
+                            <option value={player.name} key={player.id}>{player.name}</option>
+                        )}
+                    </select>
                 </label>
                 <br/>
                 <label>Loser Score:
